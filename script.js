@@ -41,12 +41,17 @@ const typeController = (e) => {
 
   userText += newLetter;
 
-  const newLetterCorrect = validate(newLetter);
+  let a = []
 
+  const newLetterCorrect = validate(newLetter);
+//   const falseValue = [newLetterCorrect]
+//   const falseCount = falseValue.filter(v => v === false).length;
+// console.log(falseCount)
   if (newLetterCorrect) {
     display.innerHTML += `<span class="green">${newLetter === " " ? "▪" : newLetter}</span>`;
   } else {
     display.innerHTML += `<span class="red">${newLetter === " " ? "▪" : newLetter}</span>`;
+    errorCount++
   }
 
   // check if given question text is equal to user typed text
@@ -94,6 +99,7 @@ const gameOver = () => {
   errorCount = 0;
   userText = "";
   display.classList.add("inactive");
+  // console.log(errorCount);
   
 };
 
