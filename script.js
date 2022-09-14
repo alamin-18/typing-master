@@ -21,11 +21,11 @@ fetch("./texts.json")
 
 // checks the user typed character and displays accordingly
 const typeController = (e) => {
-  const newLetter = e.key;
-  console.log(newLetter);
+  let newLetter = e.key;
+  // console.log(newLetter);
 
   // Handle backspace press
-  if (newLetter == "Backspace") {
+  if (newLetter === "Backspace") {
     userText = userText.slice(0, userText.length - 1);
     return display.removeChild(display.lastChild);
   }
@@ -51,11 +51,12 @@ const typeController = (e) => {
 
   // check if given question text is equal to user typed text
   if (questionText === userText) {
-    gameOver();
+     gameOver();
   }
 };
 
 const validate = (key) => {
+  // console.log(key)
   if (key === questionText[userText.length - 1]) {
     return true;
   }
@@ -64,16 +65,16 @@ const validate = (key) => {
 
 // FINISHED TYPING
 const gameOver = () => {
-  document.removeEventListener("keydown", typeController());
+  document.removeEventListener("keydown", typeController);
   // the current time is the finish time
   // so total time taken is current time - start time
   const finishTime = new Date().getTime();
-  const timeTaken = (finishTime - startTime) / 1000;
+  const timeTaken = Math.floor((finishTime - startTime) / 1000);
 
   // show result modal
   resultModal.innerHTML = "";
   resultModal.classList.toggle("hidden");
-  modalBackground.classList.toggle("hidden");
+  modalBackground.classList.toggle("visible");
   // clear user text
   display.innerHTML = "";
   // make it inactive
